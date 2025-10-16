@@ -1,0 +1,37 @@
+    name: Terraform Test
+
+    on:
+      push:
+        branches:
+          - main
+      pull_request:
+        branches:
+          - main
+
+    jobs:
+      terraform:
+        name: 'Terraform'
+        runs-on: ubuntu-latest
+
+        steps:
+          - name: Checkout
+            uses: actions/checkout@v4
+
+          - name: Setup Terraform
+            uses: hashicorp/setup-terraform@v3
+
+          - name: Terraform Init
+            id: init
+            run: terraform init
+
+          - name: Terraform Validate
+            id: validate
+            run: terraform validate
+
+          - name: Terraform Plan
+            id: plan
+            run: terraform plan -no-color
+
+          - name: Terraform Test
+            id: test
+            run: terraform test
