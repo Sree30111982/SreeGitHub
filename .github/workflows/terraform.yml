@@ -1,11 +1,37 @@
-    name: Terraform Test
+name: Terraform Test
 
-    on:
-      push:
-        branches:
-          - main
-      pull_request:
-        branches:
-          - main
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
-   
+jobs:
+  terraform:
+    name: Terraform Apply Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.5  # or any stable version
+
+      - name: Initialize Terraform
+        run: terraform init
+
+      - name: Validate Terraform
+        run: terraform validate
+
+      - name: Plan Terraform
+        run: terraform plan
+
+      - name: Apply Terraform
+        run: terraform apply -auto-approve
+
+      - name: Destroy Terraform (optional cleanup)
+        if: always()
+        run: terraform destroy -auto-approve
