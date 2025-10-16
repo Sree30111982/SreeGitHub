@@ -8,7 +8,7 @@
         branches:
           - main
 
-    jobs:
+    jobs: 
       terraform:
         name: 'Terraform'
         runs-on: ubuntu-latest
@@ -27,10 +27,6 @@
           - name: Terraform Validate
             id: validate
             run: terraform validate
-
-          - name: Terraform Plan
-            id: plan
-            run: terraform plan -no-color
 
           - name: Terraform Test
             id: test
