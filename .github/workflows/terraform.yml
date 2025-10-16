@@ -28,10 +28,6 @@
             id: validate
             run: terraform validate
 
-          - name: Terraform Plan
-            id: plan
-            run: terraform plan -no-color
-
           - name: Terraform Test
             id: test
             run: terraform test
