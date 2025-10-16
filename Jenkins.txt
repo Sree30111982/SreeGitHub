@@ -5,4 +5,7 @@ this is test
 
 SYYYYYYYY
 
+
+terraform test
+
 thanks !!
